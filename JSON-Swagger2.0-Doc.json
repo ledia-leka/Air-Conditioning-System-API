@@ -1,0 +1,706 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Operating Room Air Conditioning System",
+    "contact": {}
+  },
+  "host": "127.0.0.1:5000",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/index": {
+      "get": {
+        "description": "Hello! Welcome back!",
+        "summary": "Hello! Welcome back!",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Hello!Welcomeback!",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          },
+          "500": {
+            "description": "Error.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/current-humidity/{ac_id}": {
+      "get": {
+        "description": "Current humidity in the OR:",
+        "summary": "Current humidity in the OR:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "CurrenthumidityintheOR:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/CurrentHumidityResponse"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          },
+          "500": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/target-humidity/{ac_id}": {
+      "get": {
+        "description": "Target humidity in the OR:",
+        "summary": "Target humidity in the OR:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "TargethumidityintheOR:",
+        "deprecated": false,   
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TargetHumidityResponse"
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid retireval",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/current-temp/{ac_id}": {
+      "get": {
+        "description": "Current temparature in the OR:",
+        "summary": "Current temparature in the OR:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "CurrenttemparatureintheOR:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CurrentTempResponse"
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/target-temp/{ac_id}": {
+      "get": {
+        "description": "Target temperature in the OR:",
+        "summary": "Target temperature in the OR:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "TargettemperatureintheOR:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TargetTempResponse"
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/update_humidity/{ac_id}": {
+      "put": {
+        "description": "Update target humidity:",
+        "summary": "Update target humidity:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Updatetargethumidity:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateHumidityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ACset"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/temperature_update/{ac_id}": {
+      "put": {
+        "description": "Update target temperature:",
+        "summary": "Update target temperature:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Updatetargettemperature:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TemperatureUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ACset"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/manage_set/{ac_id}": {
+      "put": {
+        "description": "Manage set:",
+        "summary": "Manage set:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Manageset:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Manage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ACset"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/presets": {
+      "get": {
+        "description": "The list of presets:",
+        "summary": "The list of presets:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Thelistofpresets:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of AC:",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ACsets"
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Could not get data.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/create": {
+      "post": {
+        "description": "Add new set",
+        "summary": "Add new set",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Addnewset",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ACset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessfully created a new set.",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid input.",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/remove/{ac_id}": {
+      "delete": {
+        "description": "Delete set:",
+        "summary": "Delete set:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "Deleteset:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The Air Conditioner you are connected with:"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ACset"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid retireval",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/activate/{ac_id}": {
+      "get": {
+        "description": "Activate AC.",
+        "summary": "Activate set in the OR:",
+        "tags": [
+          "Air Conditioner"
+        ],
+        "operationId": "ActivatesetintheOR:",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ac_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the AC."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activated AC:",
+            "schema": {
+              "$ref": "#/definitions/ACset"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid AC name.",
+            "headers": {}
+          },
+          "404": {
+            "description": "AC not found.",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ACset": {
+      "title": "ACset",
+      "description": "Operating Room AC",
+      "type": "object",
+      "properties": {
+        "ac_id": {
+          "example": "ac-or3",
+          "type": "string"
+        },
+        "target_temperature": {
+          "example": 20,
+          "type": "string",
+          "minimum": 5,
+          "maximum": 20
+        },
+        "target_humidity": {
+          "example": "26%",
+          "type": "string"
+        },
+        "current_humidity": {
+          "example": "36%",
+          "type": "string"
+        },
+        "current_temp": {
+          "example": 17,
+          "type": "string"
+        }
+      }
+    },
+    "ACsets": {
+      "title": "ACsets",
+      "description": "Operating Room AC",
+      "type": "object",
+      "properties": {
+        "ac_id": {
+          "example": "ac-or3",
+          "type": "string"
+        },
+        "target_temperature": {
+          "example": 20,
+          "type": "string",
+          "minimum": 5,
+          "maximum": 20
+        },
+        "target_humidity": {
+          "example": "26%",
+          "type": "string"
+        },
+        "current_humidity": {
+          "example": "36%",
+          "type": "string"
+        },
+        "current_temp": {
+          "example": 17,
+          "type": "string"
+        }
+      }
+    },
+    "Manage": {
+      "title": "Manageset",
+      "description": "Manage Operating Room AC set",
+      "type": "object",
+      "properties": {
+        "ac_id": {
+          "example": "ac-or3",
+          "type": "string"
+        },
+        "target_temperature": {
+          "example": 20,
+          "type": "string",
+          "minimum": 5,
+          "maximum": 20
+        },
+        "target_humidity": {
+          "example": "26%",
+          "type": "string"
+        }
+      }
+    },
+    "TargetTempResponse": {
+      "title": "TargetTempResponse",
+      "type": "object",
+      "properties": {
+        "Celcius": {
+          "example": "17°C",
+          "type": "string"
+        },
+        "Fahrenheit": {
+          "example": "63°F",
+          "type": "string"
+        }
+      }
+    },
+    "TargetHumidityResponse": {
+      "title": "TargetHumidityResponse",
+      "type": "object",
+      "properties": {
+        "target_humidity": {
+          "example": "22%",
+          "type": "string"
+        }
+      }
+    },
+    "CurrentHumidityResponse": {
+      "title": "CurrentHumidityResponse",
+      "type": "object",
+      "properties": {
+        "Current Humidity": {
+          "example": "22%",
+          "type": "string"
+        }
+      }
+    },
+    "CurrentTempResponse": {
+      "title": "CurrentTempResponse",
+      "type": "object",
+      "properties": {
+        "Celcius": {
+          "example": "17°C",
+          "type": "string"
+        },
+        "Fahrenheit": {
+          "example": "63°F",
+          "type": "string"
+        }
+      }
+    },
+    "TemperatureUpdateRequest": {
+      "title": "TemperatureUpdateRequest",
+      "type": "object",
+      "properties": {
+        "target_temperature": {
+          "example": 18,
+          "type": "string"
+        }
+      }
+    },
+    "UpdateHumidityRequest": {
+      "title": "UpdateHumidityRequest",
+      "type": "object",
+      "properties": {
+        "target_humidity": {
+          "example": "20%",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Air Conditioner",
+      "description": ""
+    }
+  ]
+}
